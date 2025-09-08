@@ -5,18 +5,16 @@ package uniandes.dpoo.aerolinea.modelo;
  */
 public class Ruta
 {
-    // TODO 
     private String codigoRuta;
     private Aeropuerto origen;
     private Aeropuerto destino;
     private String horaSalida;
-
     public Ruta(String codigoRuta, Aeropuerto origen, Aeropuerto destino, String horaSalida)
     {
-        this.codigoRuta = codigoRuta
+        this.codigoRuta = codigoRuta;
         this.origen = origen;
-        this.destino = destino
-        this.horaSalida = horaSalida
+        this.destino = destino;
+        this.horaSalida = horaSalida;
 
 
     }
@@ -27,10 +25,7 @@ public class Ruta
     {
         return codigoRuta;
     }
-    public Aeropuerto getOrigen()
-    {
-        return origen;
-    }
+
     public Aeropuerto getDestino()
     {
         return destino;

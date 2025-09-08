@@ -13,37 +13,40 @@ import uniandes.dpoo.aerolinea.exceptions.AeropuertoDuplicadoException;
 public class Aeropuerto
 {
     public static final int RADIO_TERRESTRE = 6371;
-    private sttic Set<String> codigosUsados = new HashSet<>();
+    private static Set<String> codigosUsados = new HashSet<>();
     private String codigo;
     private String nombre;
     private double latitud;
     private double longitud;
-    
     public Aeropuerto(String codigo, String nombre, double latitud, double longitud) throws AeropuertoDuplicadoException
     {
-            if (codigosUsados.contains(codigos))
+            if (codigosUsados.contains(codigo))
             {
                 throw new AeropuertoDuplicadoException(codigo);
             }
             this.codigo = codigo;
             this.nombre = nombre;
             this.latitud = latitud;
-            this.logitud = longitud;
+            this.longitud = longitud;
             codigosUsados.add(codigo);
     }
     public String getCodigo()
     {
         return codigo;
     }
-    public String gerNombre()
+    public String getNombre()
     {
         return nombre;
     }
     public double getLatitud()
     {
+        return latitud;
+    }
+    public double getLongitud()
+    {
         return longitud;
     }
-}
+
 
 
     /**

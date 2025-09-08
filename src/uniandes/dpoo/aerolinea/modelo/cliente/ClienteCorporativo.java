@@ -7,7 +7,47 @@ import org.json.JSONObject;
  */
 public class ClienteCorporativo extends Cliente
 {
-    // TODO completar
+    public static final int GRANDE = 1;
+    public static final int MEDIANA = 2;
+    public static final int PEQUENA = 3;
+    private String nombreEmpresa;
+    private int tamanoEmpresa;
+    public ClienteCorporativo(String nombreEmpresa, int tamanoEmpresa)
+    {
+        this.nombreEmpresa = nombreEmpresa;
+        this.tamanoEmpresa = tamanoEmpresa;
+    }
+    
+    public String getIdentificador()
+    {
+        return nombreEmpresa;
+    }
+    
+    
+    public String getTipoCliente()
+    {
+        return CORPORATIVO;
+    }
+    
+    public int calcularValorTiquete(int valorBase)
+    {
+        double descuento = 0;
+        switch(tamanoEmpresa)
+        {
+            case GRANDE:
+                descuento = 0.20; 
+                break;
+            case MEDIANA:
+                descuento = 0.10;
+                break;
+            case PEQUENA:
+                descuento = 0.02; 
+                break;
+        }
+        return (int)(valorBase * (1 - descuento));
+    }
+    
+
     
 
 
