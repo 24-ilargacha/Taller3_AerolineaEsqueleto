@@ -61,6 +61,10 @@ public class Vuelo {
     }
     public int venderTiquetes​(Cliente cliente, CalculadoraTarifas calculadora, int cantidad) throws VueloSobrevendidoException
     {
+        if (!hayEspacioDisponible(cantidad))
+    {
+        throw new VueloSobrevendidoException(this);
+    }
         int tarifaPorTiquete = calculadora.calcularTarifa(this.ruta, cliente);
         int valorTotal = 0;
         for (int i = 0; i < cantidad; i++)
@@ -72,10 +76,18 @@ public class Vuelo {
         
         return valorTotal;
     }
-
-
-
-
+        public boolean hayEspacioDisponible(int cantidad)
+    {
+        return (getTiquetesVendidos() + cantidad) <= avion.getCapacidad();
+    }
+        public int getTiquetesVendidos()
+    {
+        return tiquetes.size();
+    }
+    public void marcarRealizado()
+    {
+    this.realizado = true;
+    }
     public boolean equals(java.lang.Object obj)
     {
         if (this == obj)

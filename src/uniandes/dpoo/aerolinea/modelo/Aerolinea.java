@@ -307,10 +307,11 @@ public class Aerolinea
             
         {
             if (vuelo.getAvion().getNombre().equals(nombreAvion)&& vuelo.getFecha().equals(fecha))
+            {
                 throw new Exception ("El avion " + nombreAvion + "se programo para " + fecha);
             }   
         }
-        Vuelo nuevoVuelo = new Vuelo (rutas, fecha ,aviones); 
+        Vuelo nuevoVuelo = new Vuelo (ruta, fecha ,avion); 
         vuelos.add(nuevoVuelo);
     }
 
@@ -353,7 +354,7 @@ public class Aerolinea
             new CalculadoraTarifasTemporadaBaja();
 
         int tarifaPorTiquete = calculadora.calcularTarifa(vuelo.getRuta(), cliente);
-        int valotTotal = 0 ;
+        int valorTotal = 0 ;
         for (int i = 0; i < cantidad; i++)
         {
             Tiquete tiquete = GeneradorTiquetes.generarTiquete(vuelo, cliente, tarifaPorTiquete);
@@ -394,7 +395,7 @@ public class Aerolinea
             return "no se encotro al cliente" ;
         }
         int saldoPendiente = 0; 
-        int tiquetePendientes = 0;
+        int tiquetesPendientes = 0;
         for (Tiquete tiquete : getTiquetes())
         {
             if (tiquete.getCliente().getIdentificador().equals(identificadorCliente) && !tiquete.esUsado())
@@ -405,6 +406,21 @@ public class Aerolinea
         }
         return " La suma de lo que pagó el cliente por los tiquetes sin usar es de : " + saldoPendiente;
     }
+    private boolean esTemporadaAlta(String fecha)
+    {
+        {
+            String[] partes = fecha.split("-");
+            if (partes.length >= 2)
+            {
+                int mes = Integer.parseInt(partes[1]);
+                return mes == 6 || mes == 7 || mes == 8 || mes == 12;
+            }
+        }
+        return false;
+    }
+
+
 }
+
 
 
